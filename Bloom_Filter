@@ -1,0 +1,54 @@
+
+#include <iostream>
+
+using namespace std;
+
+int h1(string s, int arrsize){
+    int hash = 0; 
+    for (int i = 0; i < s.size(); i++){ 
+        hash = (hash + ((int)s[i])); 
+        hash = hash % arrsize; 
+    } 
+    return hash; 
+} 
+int h2(string s, int arrsize){
+    int hash = 5; 
+    for (int i = 0; i < s.size(); i++){ 
+        hash = (hash + ((int)s[i])+2); 
+        hash = hash % arrsize; 
+    } 
+    return hash; 
+} 
+bool lookup(bool* bitarr, int arrsize, string s){ 
+    int a = h1(s, arrsize); 
+    int b = h2(s, arrsize); 
+    if (bitarr[a] && bitarr[b]){
+        return true; 
+    }
+    else{
+        return false; 
+    }
+}
+void insert(bool* bitarray, int arrSize, string s){
+    if (lookup(bitarray, arrSize, s)) 
+        cout << s << "Already present" << endl; 
+    else 
+    { 
+        int a = h1(s, arrSize); 
+        int b = h2(s, arrSize); 
+        bitarray[a] = true; 
+        bitarray[b] = true; 
+        cout << s << " inserted" << endl; 
+    } 
+} 
+
+int main(){
+    bool bitarr[100]={false};
+    int arrsize=100;
+    string arr[5]={"Python","C++","JAVA","SQL","Mongodb"};
+    for(int i=0;i<=5;i++){
+        insert(bitarr,arrsize,arr[i]);
+    }
+
+    return 0;
+}
