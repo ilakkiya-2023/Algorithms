@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+#include <iostream>
+
+using namespace std;
+
+int func(int arr1[],int arr2[],int l1,int l2){
+    sort(arr1,arr1+l1);
+    sort(arr2,arr2+l2);
+    int max = 0; 
+    for(int i = 0; i < l1; ++i)
+    {
+        if (max < abs(arr1[i] - arr2[i]))
+            max = abs(arr1[i] - arr2[i]);
+    }
+    return max;
+}
+int main()
+{
+    int arr1[4]={3,2,-4};
+    int arr2[4]={0,-2,4};
+    int l1=sizeof(arr1)/sizeof(arr1[1]);
+    int l2=sizeof(arr2)/sizeof(arr2[1]);
+    int ans=func(arr1,arr2,l1,l2);
+    
+    cout<<ans;
+
+    return 0;
+}
